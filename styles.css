@@ -1,0 +1,107 @@
+/* 
+     |  ___|  __ \  |   |  _ \   _ \   
+     | |      |   | |   | |   | |   |  
+ \   | |      |   | |   | __ <  |   |  
+\___/ \____| ____/ \___/ _| \_\\___/   
+                                       
+  ___|  _ \  __ \  ____|    _ )   _ _| __ \  ____|    \     ___|  
+ |     |   | |   | __|     _ \ \   |  |   | __|     _ \  \___ \  
+ |     |   | |   | |      ( `  <   |  |   | |      ___ \       | 
+\____|\___/ ____/ _____| \___/\/ ___|____/ _____|_/    _\_____/  
+
+  https://jcduro.bexartideas.com/index.php | 2025 | JC Duro Code & Ideas
+
+*/
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+body {
+    background: linear-gradient(135deg, #1e2645 30%, #3b016d 100%);
+    font-family: 'Orbitron', monospace;
+    color: #fff;
+}
+.container {
+    background: #212c46e9;
+    margin: 40px auto;
+    max-width: 440px;
+    border-radius: 12px;
+    padding: 26px 32px;
+    box-shadow:
+        0 0 14px #9e09ff,
+        0 0 37px #2c9fff66,
+        0 0 90px #00ffe433;
+    text-align: center;
+}
+h1 {
+    font-size: 2.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow:
+        0 0 5px #00ffee,
+        0 0 12px #9e09ff;
+}
+input[type=text] {
+    width: 84%;
+    padding: 8px 10px;
+    font-size: 19px;
+    margin-bottom: 13px;
+    border-radius: 6px;
+    border: 1px solid #9e09ff;
+    background: #232346;
+    color: #aaeaff;
+    font-family: monospace;
+}
+input[type=file] {
+    margin-bottom: 8px;
+    color: #fff;
+}
+button {
+    background: #9e09ff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 11px 34px;
+    font-size: 15px;
+    font-family: 'Orbitron', monospace;
+    box-shadow:
+        0 0 11px #9e09ff,
+        0 0 35px #2c9fff88;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.2s, color 0.2s;
+}
+button:hover {
+    background: #00ffdd;
+    color: #311f5c;
+}
+.info {
+    min-height: 28px;
+    font-size: 16px;
+}
+.error { color: #ff3242; }
+.success { color: #1beeae; }
+img {
+    margin: 14px auto;
+    max-width: 95%;
+    border-radius: 10px;
+    box-shadow:
+        0 0 22px #00fff1,
+        0 0 28px #9e09ff44;
+}
+a.download {
+    display: inline-block;
+    margin-top: 7px;
+    padding: 7px 25px;
+    background: #3b016d;
+    color: #fcffb5;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow:
+        0 0 18px #fff748bb,
+        0 0 12px #00ffdd99;
+    transition: background .2s;
+}
+a.download:hover {
+    background: #00fff1;
+    color: #212c46;
+}
