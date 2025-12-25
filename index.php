@@ -13,7 +13,9 @@
 
 -->
 
+
 <?php
+
 $imagen_meme = '';
 $info = '';
 $has_result = false;
@@ -36,22 +38,51 @@ if(isset($_POST['crear']) && isset($_FILES['img']) && $_FILES['img']['error'] ==
         $has_result = true;
         $top_text = strtoupper(trim($_POST['top_text']));
         $bottom_text = strtoupper(trim($_POST['bottom_text']));
-        $font = __DIR__ . '/impact/impact.ttf'; // Usar fuente tipo meme
-        $font_size = imagesx($img) > 500 ? 44 : 28;
+        $font = __DIR__ . '/impact/impact.ttf';  // Usar fuente tipo meme
+        $alto = imagesy($img);
+        $font_size = max(10, intval($alto * 0.10)); // 10% del alto
         $color = imagecolorallocate($img, 255, 255, 255);
         $stroke = imagecolorallocate($img, 0, 0, 0);
 
-        // Función para texto con borde tipo meme
-        function imagettfstroketext(&$img, $size, $angle, $x, $y, $color, $stroke, $font, $text, $px)
-        {
-            for($c1 = ($x - abs($px)); $c1 <= ($x + abs($px)); $c1++)
-            for($c2 = ($y - abs($px)); $c2 <= ($y + abs($px)); $c2++)
-            imagettftext($img, $size, $angle, $c1, $c2, $stroke, $font, $text);
-            imagettftext($img, $size, $angle, $x, $y, $color, $font, $text);
-        }
+      // Función para texto con borde tipo meme
+function imagettfstroketext(&$img, $size, $angle, $x, $y, $color, $stroke, $font, $text, $px)
+{
+    // Nos aseguramos de que x, y y px sean enteros base
+    $x  = (int)round($x);
+    $y  = (int)round($y);
+    $px = (int)round($px);
 
-        $width = imagesx($img);
-        $height = imagesy($img);
+    for ($c1 = ($x - abs($px)); $c1 <= ($x + abs($px)); $c1++) {
+        for ($c2 = ($y - abs($px)); $c2 <= ($y + abs($px)); $c2++) {
+            imagettftext(
+                $img,
+                (int)round($size),
+                (float)$angle,
+                (int)$c1,
+                (int)$c2,
+                $stroke,
+                $font,
+                $text
+            );
+        }
+    }
+
+    // Texto principal
+    imagettftext(
+        $img,
+        (int)round($size),
+        (float)$angle,
+        (int)$x,
+        (int)$y,
+        $color,
+        $font,
+        $text
+    );
+}
+
+$width  = imagesx($img);
+$height = imagesy($img);
+
 
         // Centrar y acomodar top y bottom
         if($top_text) {
@@ -102,5 +133,38 @@ if(isset($_POST['crear']) && isset($_FILES['img']) && $_FILES['img']['error'] ==
         <b>* Los textos se recortan si son muy largos.<br>* Usa imágenes horizontales para mejores memes.</b>
     </div>
 </div>
+
+     
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const link = document.querySelector('a.download');
+    if(!link) return;
+    link.addEventListener('click', function(e){
+        e.preventDefault();
+        const href = this.href;
+        const filename = this.getAttribute('download') || 'meme.jpg';
+        fetch(href)
+            .then(res => res.blob())
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                setTimeout(() => location.reload(), 700);
+            })
+            .catch(() => {
+                // Si falla fetch, hacer recarga igual
+                setTimeout(() => location.reload(), 700);
+            });
+    });
+});
+</script>
+
+     
 </body>
 </html>
