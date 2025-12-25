@@ -13,7 +13,7 @@ Este es un proyecto web en PHP puro que permite crear memes personalizados en el
 
 ## ✨ Vista previa
 
-![Memes_Creator_Preview](preview.gif)
+![Memes_Creator_Preview](previewmeme.gif)
 
 --- 
 
